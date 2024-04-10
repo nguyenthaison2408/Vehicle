@@ -11,6 +11,6 @@ class Car extends Vehicle {
 
     public void showInfo() {
         super.showInfo();
-        System.out.println("Slots: " + slots + ", Engine Type: " + engineType);
+        System.out.println("Chỗ ngồi: " + slots + ", Kiểu động cơ: " + engineType);
     }
 }

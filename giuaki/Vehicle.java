@@ -22,6 +22,6 @@ class Vehicle implements ICar, Serializable {
     }
 
     public void showInfo() {
-        System.out.println("ID: " + ID + ", Brand: " + brand + ", Year: " + publishYear + ", Price: " + price + ", Color: " + color);
+        System.out.println("ID: " + ID + ", Hãng sản xuất: " + brand + ", Năm sản xuất: " + publishYear + ", Gía bán: " + price + ", Màu xe: " + color);
     }
 }

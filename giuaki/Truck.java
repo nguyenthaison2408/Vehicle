@@ -10,7 +10,7 @@ class Truck extends Vehicle {
 
     public void showInfo() {
         super.showInfo();
-        System.out.println("Load Weight: " + loadWeight);
+        System.out.println("Trọng tải: " + loadWeight);
     }
 }
 

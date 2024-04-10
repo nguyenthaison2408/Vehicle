@@ -9,6 +9,6 @@ class Motorcycle extends Vehicle {
 
     public void showInfo() {
         super.showInfo();
-        System.out.println("Capacity: " + capacity);
+        System.out.println("Công suất:" + capacity);
     }
 }

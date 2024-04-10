@@ -9,10 +9,12 @@ public class Main {
 
         while (true) {
             System.out.println("Menu:");
-            System.out.println("1.Add Vehicle");
-            System.out.println("2.Show All Vehicles");
-            System.out.println("3.Exit");
-            System.out.print("Choose an option: ");
+            System.out.println("1.Thêm phương tiện");
+            System.out.println("2.Hiển thị toàn bộ phương tiện");
+            System.out.println("3.Lưu thư mục");
+            System.out.println("4.Tải thư mục");
+            System.out.println("5.Thoát");
+            System.out.print("Vui lòng chọn: ");
             int choice = scanner.nextInt();
             scanner.nextLine();  // consume newline
 
@@ -24,55 +26,61 @@ public class Main {
                     manager.showAllVehicles();
                     break;
                 case 3:
-                    System.out.println("Exiting");
+                    manager.saveToFile("vehicles.dat");
+                    break;
+                case 4:
+                    manager.loadFromFile("vehicles.dat");
+                    break;
+                case 5:
+                    System.out.println("Đang thoát");
                     scanner.close();
                     System.exit(0);
                 default:
-                    System.out.println("Invalid.");
+                    System.out.println("Không hợp lệ");
             }
         }
     }
 
     public static void addVehicle(Scanner scanner, VehicleManager manager) {
-        System.out.println("Select Vehicle Type:");
-        System.out.println("1. Car");
-        System.out.println("2. Motorcycle");
-        System.out.println("3. Truck");
-        System.out.print("Enter choice: ");
+        System.out.println("Chọn Loại Xe:");
+        System.out.println("1. Ôto");
+        System.out.println("2. Xe Máy");
+        System.out.println("3. Xe Tải");
+        System.out.print("Chọn Số: ");
         int type = scanner.nextInt();
         scanner.nextLine();  // consume newline
 
-        System.out.print("Enter ID: ");
+        System.out.print("Nhập ID: ");
         String ID = scanner.nextLine();
-        System.out.print("Enter Brand: ");
+        System.out.print("Nhập hãng: ");
         String brand = scanner.nextLine();
-        System.out.print("Enter Publish Year: ");
+        System.out.print("Nhập năm sản xuất: ");
         int publishYear = scanner.nextInt();
-        System.out.print("Enter Price: ");
+        System.out.print("Nhập giá: ");
         double price = scanner.nextDouble();
-        System.out.print("Enter Color: ");
+        System.out.print("Nhập màu: ");
         String color = scanner.next();
 
         switch (type) {
             case 1:
-                System.out.print("Enter Slots: ");
+                System.out.print("Nhập chỗ ngồi: ");
                 int slots = scanner.nextInt();
-                System.out.print("Enter Engine Type: ");
+                System.out.print("Nhập kiểu động cơ: ");
                 String engineType = scanner.next();
                 manager.addVehicle(new Car(ID, brand, publishYear, price, color, slots, engineType));
                 break;
             case 2:
-                System.out.print("Enter Capacity: ");
+                System.out.print("Nhập công suất: ");
                 int capacity = scanner.nextInt();
                 manager.addVehicle(new Motorcycle(ID, brand, publishYear, price, color, capacity));
                 break;
             case 3:
-                System.out.print("Enter Load Weight: ");
+                System.out.print("Nhập trọng tải: ");
                 double loadWeight = scanner.nextDouble();
                 manager.addVehicle(new Truck(ID, brand, publishYear, price, color, loadWeight));
                 break;
             default:
-                System.out.println("Invalid.");
+                System.out.println("Không hợp lệ.");
         }
     }
 }
