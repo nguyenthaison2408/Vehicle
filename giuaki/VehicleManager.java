@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 class VehicleManager {
@@ -32,7 +33,7 @@ class VehicleManager {
             out.writeObject(vehicles);
             out.close();
             fileOut.close();
-            System.out.println("Data saved to file: " + filename);
+            System.out.println("Dữ liệu đã lưu trong file: " + filename);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,9 +46,34 @@ class VehicleManager {
             vehicles = (List<Vehicle>) in.readObject();
             in.close();
             fileIn.close();
-            System.out.println("Data loaded from file: " + filename);
+            System.out.println("Dữ liệu đã tải từ file: " + filename);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
+    public void deleteVehicle(String ID) {
+        for (Iterator<Vehicle> iterator = vehicles.iterator(); iterator.hasNext();) {
+            Vehicle vehicle = iterator.next();
+            if (vehicle.ID.equals(ID)) {
+                iterator.remove();
+                System.out.println("ID Xe " + ID + " đã bị xóa.");
+                return;
+            }
+        }
+        System.out.println("ID xe " + ID + " không tìm thấy");
+    }
+    public void updateVehicle(String ID, String brand, int publishYear, double price, String color) {
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.ID.equals(ID)) {
+                vehicle.brand = brand;
+                vehicle.publishYear = publishYear;
+                vehicle.price = price;
+                vehicle.color = color;
+                System.out.println("ID xe " + ID + " đã cập nhật.");
+                return;
+            }
+        }
+        System.out.println("ID xe " + ID + " không tìm thấy.");
+    }
+
 }

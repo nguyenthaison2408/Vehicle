@@ -13,33 +13,44 @@ public class Main {
             System.out.println("2.Hiển thị toàn bộ phương tiện");
             System.out.println("3.Lưu thư mục");
             System.out.println("4.Tải thư mục");
-            System.out.println("5.Thoát");
+            System.out.println("5.Xóa xe");
+            System.out.println("6.Cập nhật xe");
+            System.out.println("7.Thoát");
             System.out.print("Vui lòng chọn: ");
             int choice = scanner.nextInt();
             scanner.nextLine();  // consume newline
 
             switch (choice) {
-                case 1:
-                    addVehicle(scanner, manager);
-                    break;
-                case 2:
-                    manager.showAllVehicles();
-                    break;
-                case 3:
-                    manager.saveToFile("vehicles.dat");
-                    break;
-                case 4:
-                    manager.loadFromFile("vehicles.dat");
-                    break;
-                case 5:
-                    System.out.println("Đang thoát");
-                    scanner.close();
-                    System.exit(0);
-                default:
-                    System.out.println("Không hợp lệ");
-            }
+            case 1:
+                addVehicle(scanner, manager);
+                break;
+            case 2:
+                manager.showAllVehicles();
+                break;
+            case 3:
+                manager.saveToFile("vehicles.dat");
+                break;
+            case 4:
+                manager.loadFromFile("vehicles.dat");
+                break;
+            case 5:
+                System.out.print("Nhập ID xe cần xóa: ");
+                String deleteID = scanner.nextLine();
+                manager.deleteVehicle(deleteID);
+                break;
+            case 6:
+            	scanner.nextLine();
+            	updateVehicle(scanner, manager);
+                break;
+            case 7:
+                System.out.println("Đang thoát");
+                scanner.close();
+                System.exit(0);
+            default:
+                System.out.println("Không hợp lệ.");
         }
     }
+}
 
     public static void addVehicle(Scanner scanner, VehicleManager manager) {
         System.out.println("Chọn Loại Xe:");
@@ -83,4 +94,17 @@ public class Main {
                 System.out.println("Không hợp lệ.");
         }
     }
+    public static void updateVehicle(Scanner scanner, VehicleManager manager) {
+        System.out.print("Nhập ID của xe cần cập nhật: ");
+        String updateID = scanner.nextLine();
+        System.out.print("Nhập hãng sản xuất: ");
+        String brand = scanner.nextLine();
+        System.out.print("Nhập năm sản xuất: ");
+        int publishYear = scanner.nextInt();
+        System.out.print("Nhập giá xe: ");
+        double price = scanner.nextDouble();
+        System.out.print("Nhập màu xe: ");
+        String color = scanner.next();
+        manager.updateVehicle(updateID, brand, publishYear, price, color);
+}
 }
